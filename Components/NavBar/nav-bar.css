@@ -1,0 +1,43 @@
+#nav-bar {
+    width: 100%;
+    position: fixed;        
+    background: #06283D;
+    padding: 20px 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    user-select: none;
+}
+
+.nav-bar-links{
+    text-align: center;
+    display: inline;
+}
+
+.nav-bar-link:link, 
+.nav-bar-link:visited,
+.nav-bar-link:active,
+.nav-bar-link:hover{
+    padding: 2px;
+    color: #DFF6FF;
+    text-decoration: none;
+    user-select: none;
+}
+
+.nav-bar-link:hover{
+    color: #47B5FF;
+    user-select: none;
+    background-color: #2c3e50;
+}
+
+#nav-bar-home{
+    color: #47B5FF;
+}
+
+#nav-bar-website-name{
+    text-decoration: underline;
+    text-decoration: blink;
+    align-self: left;
+    display: inline;
+    color: white;
+}
