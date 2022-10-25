@@ -12,16 +12,18 @@
     <link rel="stylesheet" href="Components/NavBar/nav-bar.css">
     <!--sign.css-->
     <link rel="stylesheet" href="User/sign.css">
+    <!--sign-up.js-->
+    <script src="User/Sign.js"></script>
   </head>
   <body>
     <nav-bar></nav-bar>
     <div id="input-box-padding">
       <div id="input-box">
         <label>Username</label><br>
-        <input placeholder="Username" type="text"><br>
+        <input id="userName" placeholder="Username" type="text"><br>
         <label>Password</label><br>
-        <input placeholder="Password" type="password"><br><br>
-        <button>Login</button><br><br>
+        <input id="password" placeholder="Password" type="password"><br><br>
+        <button onclick="SignIn()">Login</button><br><br>
         <p>Do Not Have An Account? <a id="nav-bar-home" class="nav-bar-link" href="/User/sign-up.html">Sign Up</a></p>
       </div>
     </div>
