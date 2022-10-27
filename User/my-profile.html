@@ -12,21 +12,25 @@
     <link rel="stylesheet" href="Components/NavBar/nav-bar.css">
     <!--sign.css-->
     <link rel="stylesheet" href="User/sign.css">
+    <!--MyProfile.js-->
+    <script src="User/SignedIn.js"></script>
+    <!--Get Profile Data-->
+    <script src="User/MyProfile.js"></script>
   </head>
   <body>
     <nav-bar></nav-bar>
     <div id="input-box-padding">
       <div id="input-box">
-        <label>First Name</label>
-        <input placeholder="First Name" type="text">
+        <label>First Name</label><br>
+        <input id="firstName" placeholder="First Name" type="text">
         <label>Middle Name</label>
-        <input placeholder="Middle Name" type="text">
-        <label>Last Name</label>
-        <input placeholder="Last Name" type="text"><br>
+        <input id="middleName" placeholder="Middle Name" type="text"><br>
+        <label>Last Name</label><br>
+        <input id="lastName" placeholder="Last Name" type="text"><br>
         <label>Email</label><br>
-        <input placeholder="Email" type="email">
+        <input id="email" placeholder="Email" type="email"><br>
         <label>Birth Date</label><br>
-        <input type="date"><br>
+        <input id="birthDate" type="date"><br>
         <label>Profile Picture</label>
         <input accept="image/png" type="file"><br><br>
         <div class="custom-select" style="width:200px">

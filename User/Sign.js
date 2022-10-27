@@ -1,3 +1,14 @@
+function deleteAllCookies() {
+    var cookies = document.cookie.split(";");
+
+    for (var i = 0; i < cookies.length; i++) {
+        var cookie = cookies[i];
+        var eqPos = cookie.indexOf("=");
+        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    }
+}
+
 function SignUp(){
     const userName = document.getElementById("userName").value;
     const password = document.getElementById("password").value;
@@ -19,12 +30,21 @@ function SignUp(){
             alert('Account already exists!');
         }else if(response.status == 200){
             alert('Account created successfully!');
-
-            // redirecting to homepage
-            location.href = '/';
         }else{
             console.error('Uknown status code!');
         }
+
+        return response.json();
+    })
+    .then(json => {
+        // clearing cookies
+        deleteAllCookies();
+
+        // setting userId cookie
+        document.cookie = `userId=${json}; path=/`;
+
+        // sending user to homescreen
+        location.href = "/";
     })
     .catch(err => console.log(err));
 }
@@ -45,14 +65,25 @@ function SignIn(){
         body: JSON.stringify(request),
     })
     .then(response => {
-        if(response.status == 200){
-            alert('Account created successfully!');
+        console.log(response.status);
 
-            // redirecting to homepage
-            location.href = '/';
+        if(response.status == 200){
+            alert('User logged in successfully!');
         }else{
             alert('Unknown account username and password!');
         }
+
+        return response.json();
+    })
+    .then(json => {
+        // clearing cookies
+        deleteAllCookies();
+
+        // setting userId cookie
+        document.cookie = `userId=${json}; path=/`;
+
+        // sending user to homescreen
+        location.href = "/";
     })
     .catch(err => console.log(err));
 }
