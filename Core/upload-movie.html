@@ -10,22 +10,33 @@
         <script type="module" src="Components/GenreSelector/GenreSelector.js"></script>
         <script type="module" src="Components/RatingSelector/RatingSelector.js"></script>
         <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
+        <script type="module">
+            import { submitMovie } from '/JsSrc/Movie.js';
+            window.submitMovie = submitMovie;
+        </script>
     </head>
 
 <body>
     <nav-bar></nav-bar>
     <label>IMBD Id</label>
-    <input type="text">
+    <input id="movieId" type="text">
     <label>Title</label>
-    <input type="text">
+    <input id="name" type="text">
+    <label>Director</label>
+    <input id="director" type="text">
+    <label>Production Studio</label>
+    <input id="studio" type="text">
     <genre-selector></genre-selector>
-    <label>Length</label>
-    <input type="time">
+    <label>Length Hours</label>
+    <input id="length-hours" type="number" min="0">
+    <label>Mintues</label>
+    <input id="length-minutes" type="number" min="0" max="59"></label>
     <label>Rating</label>
-    <input type="number" step="0.1" min="0" max="10">
+    <input id="rating" type="number" step="0.1" min="0" max="10">
     <label>Summary</label>
-    <textarea></textarea>
+    <textarea id="summary"></textarea>
     <rating-selector></rating-selector>
+    <button onclick="submitMovie()">Upload Movie</button>
 </body>
 
 </html>

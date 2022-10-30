@@ -7,7 +7,7 @@ class RatingSelector extends HTMLElement {
         let result = "";
 
         result += `<label>Genre</label>`
-        result += '<select>';
+        result += '<select id="rated">';
 
         for (let rate in ratings) {
             result += `<option value="${ratings[rate]}">${ratings[rate]}</option>`
