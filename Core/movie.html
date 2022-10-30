@@ -11,7 +11,10 @@
         <script type="module" src="Components/Movie/Movie.js"></script>
         <script type="module">
             import { toggleLike } from '/JsSrc/ToggleLike.js';
+            import { submitReview, deleteReview } from '/JsSrc/Review.js';
             window.toggleLike = toggleLike;
+            window.submitReview = submitReview;
+            window.deleteReview = deleteReview;
         </script>
     </head>
 

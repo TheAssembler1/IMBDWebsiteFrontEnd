@@ -5,7 +5,7 @@ class Movie extends HTMLElement {
         super();
     }
 
-    setupInnerHTML(movie, commentsJson, usernames, liked) {
+    setupInnerHTML(movie, commentsJson, usernames, liked, userReview) {
         let result = "";
 
         result += "<hr>";
@@ -18,6 +18,11 @@ class Movie extends HTMLElement {
         result += `<input id="liked" onclick="toggleLike()" type=checkbox ${(liked) ? 'checked' : ''}></input>`
         result += `<p>${movie.summary}</p>`;
         result += "<hr>";
+
+        // for user to sbumit a review
+        result += `<textarea id="review">${(result) ? "" : userReview}</textarea>`;
+        result += `<button onclick="submitReview()">Submite Review</button>`;
+        result += `<button onclick="deleteReview()">Delete Review</button>`;
 
         let count = 0;
         for (let comment in commentsJson.moviescomments) {
@@ -42,11 +47,16 @@ class Movie extends HTMLElement {
         let commentsRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesCommentsServlet?movieId=${movieId}`);
         let commentsJson = await commentsRes.json();
 
+        let userReview = null;
         let userNames = [];
         for (let comment in commentsJson.moviescomments) {
             let userId = commentsJson.moviescomments[comment].userId;
             let userRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${userId}`);
             let userJson = await userRes.json();
+
+            if (getCookie("userId") == commentsJson.moviescomments[comment].userId) {
+                userReview = commentsJson.moviescomments[comment].comment;
+            }
 
             userNames.push(userJson.userName);
         }
@@ -59,7 +69,7 @@ class Movie extends HTMLElement {
             liked = true;
         }
 
-        this.innerHTML = this.setupInnerHTML(movieJson, commentsJson, userNames, liked);
+        this.innerHTML = this.setupInnerHTML(movieJson, commentsJson, userNames, liked, userReview);
     }
 }
 
