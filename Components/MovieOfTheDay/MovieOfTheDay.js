@@ -3,27 +3,12 @@ class MovieOfTheDay extends HTMLElement {
         super();
     }
 
-    setupInnerHTML(movie) {
-        let result = "";
-
-        result += "<hr>";
-        result += `<p>${movie.name}</p>`;
-        result += `<p>${movie.studio}</p>`;
-        result += `<p>${movie.length}</p>`;
-        result += `<p>${movie.rating}</p>`;
-        result += `<p>${movie.director}</p>`;
-        result += `<p>${movie.likes}</p>`;
-        result += `<p>${movie.summary}</p>`;
-        result += "<hr>";
-
-        return result;
-    }
-
     connectedCallback() {
         fetch('http://localhost:8080/IMBDWebsiteBackEnd/MovieOfTheDayServlet')
             .then(res => res.json())
             .then(json => {
-                this.innerHTML = this.setupInnerHTML(json);
+                console.log(JSON.stringifyjson);
+                window.location.href = `/Core/movie.html?movieId=${json.movieId}`
             })
             .catch(err => console.error(err));
     }
