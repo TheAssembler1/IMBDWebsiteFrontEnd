@@ -20,8 +20,8 @@ class Movie extends HTMLElement {
         result += "<hr>";
 
         // for user to sbumit a review
-        result += `<textarea id="review">${(result) ? "" : userReview}</textarea>`;
-        result += `<button onclick="submitReview()">Submite Review</button>`;
+        result += `<textarea id="review">${(!userReview) ? "" : userReview}</textarea>`;
+        result += `<button onclick="submitReview()">Submit Review</button>`;
         result += `<button onclick="deleteReview()">Delete Review</button>`;
 
         let count = 0;
