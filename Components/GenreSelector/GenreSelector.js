@@ -23,7 +23,6 @@ class GenreSelector extends HTMLElement {
         fetch('http://localhost:8080/IMBDWebsiteBackEnd/MoviesGenreServlet')
             .then(res => res.json())
             .then(json => {
-                console.log(JSON.stringify(json));
                 this.innerHTML = this.setupInnerHTML(json);
             })
             .catch(err => console.log(err));
