@@ -1,6 +1,6 @@
-import getCookie from "./Cookies.js";
+import { getCookie } from "./Cookies.js";
 
-function setUserProfile(user) {
+function setUserProfile(user, refresh) {
     var firstName = document.getElementById("firstName");
     var middleName = document.getElementById("middleName");
     var lastName = document.getElementById("lastName");
@@ -13,6 +13,35 @@ function setUserProfile(user) {
     lastName.value = user.lastName || null;
     email.value = user.email || null;
     birthDate.value = user.birthDate || null;
+
+    if (refresh) {
+        window.location.href = '/User/my-profile.html';
+    }
+}
+
+async function updateUserProfile() {
+    var firstName = document.getElementById("firstName").value;
+    var middleName = document.getElementById("middleName").value;
+    var lastName = document.getElementById("lastName").value;
+    var email = document.getElementById("email").value;
+    var birthDate = document.getElementById("birthDate").value;
+
+    let request = {
+        "firstName": firstName || null,
+        "middleName": middleName || null,
+        "lastName": lastName || null,
+        "email": email || null,
+        "birthDate": birthDate || null
+    };
+
+    let res = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${getCookie("userId")}`, {
+        method: "PUT",
+        body: JSON.stringify(request)
+    })
+        .then(res => {
+            window.location.href = "/User/my-profile.html";
+        })
+        .catch(err => console.error(err));
 }
 
 function getUserProfile() {
@@ -25,9 +54,11 @@ function getUserProfile() {
         .then(json => {
             result = json;
 
-            setUserProfile(result);
+            setUserProfile(result, false);
         })
         .catch(err => console.error(err));
 }
 
-export { setUserProfile, getUserProfile };
+getUserProfile();
+
+export { updateUserProfile, setUserProfile, getUserProfile };

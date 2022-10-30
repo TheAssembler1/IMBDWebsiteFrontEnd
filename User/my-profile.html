@@ -7,8 +7,11 @@
     <!--setting the base reference-->
     <base href="/">
     <script type="module" src="Components/NavBar/NavBar.js"></script>
-    <script type="module" src="Components/GenreSelector/GenreSelector.js"></script>
     <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
+    <script type="module">
+      import { updateUserProfile } from '/JsSrc/MyProfile.js';
+      window.updateUserProfile = updateUserProfile;
+    </script>
   </head>
 
 <body>
@@ -23,8 +26,7 @@
   <input id="email" placeholder="Email" type="email">
   <label>Birth Date</label>
   <input id="birthDate" type="date">
-  <genre-selector></genre-selector>
-  <button>Update Account</button>
+  <button onclick="updateUserProfile()">Update Account</button>
 </body>
 
 </html>

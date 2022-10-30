@@ -35,7 +35,7 @@ function SignUp() {
             // sending user to homescreen
             location.href = "/";
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
 }
 
 function SignIn() {
@@ -70,7 +70,7 @@ function SignIn() {
             // sending user to homescreen
             location.href = "/";
         })
-        .catch(err => console.log(err));
+        .catch(err => console.error(err));
 }
 
 export { SignIn, SignUp }

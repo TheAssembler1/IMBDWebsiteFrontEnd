@@ -1,9 +1,11 @@
+import { getCookie } from "../../JsSrc/Cookies.js";
+
 class Movie extends HTMLElement {
     constructor() {
         super();
     }
 
-    setupInnerHTML(movie, commentsJson, usernames) {
+    setupInnerHTML(movie, commentsJson, usernames, liked) {
         let result = "";
 
         result += "<hr>";
@@ -13,6 +15,7 @@ class Movie extends HTMLElement {
         result += `<p>${movie.rating}</p>`;
         result += `<p>${movie.director}</p>`;
         result += `<p>${movie.likes}</p>`;
+        result += `<input id="liked" onclick="toggleLike()" type=checkbox ${(liked) ? 'checked' : ''}></input>`
         result += `<p>${movie.summary}</p>`;
         result += "<hr>";
 
@@ -48,7 +51,15 @@ class Movie extends HTMLElement {
             userNames.push(userJson.userName);
         }
 
-        this.innerHTML = this.setupInnerHTML(movieJson, commentsJson, userNames);
+        let likesRes = fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`);
+        let liked = false;
+
+        // checking if user has liked post
+        if ((await likesRes).status == 409) {
+            liked = true;
+        }
+
+        this.innerHTML = this.setupInnerHTML(movieJson, commentsJson, userNames, liked);
     }
 }
 
