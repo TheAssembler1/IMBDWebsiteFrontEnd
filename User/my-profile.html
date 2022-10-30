@@ -1,53 +1,30 @@
 <!doctype html>
 <html>
-  <head>
+
+<head>
+
   <head>
     <!--setting the base reference-->
     <base href="/">
-    <!--including bootstrap-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <!--<nav-bar></nav-bar>-->
     <script type="module" src="Components/NavBar/NavBar.js"></script>
-    <!--nav-bar.css-->
-    <link rel="stylesheet" href="Components/NavBar/nav-bar.css">
-    <!--sign.css-->
-    <link rel="stylesheet" href="User/sign.css">
-    <!--MyProfile.js-->
-    <script src="User/SignedIn.js"></script>
-    <!--Get Profile Data-->
-    <script src="User/MyProfile.js"></script>
+    <script type="module" src="Components/GenreSelector/GenreSelector.js"></script>
+    <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
   </head>
-  <body>
-    <nav-bar></nav-bar>
-    <div id="input-box-padding">
-      <div id="input-box">
-        <label>First Name</label><br>
-        <input id="firstName" placeholder="First Name" type="text">
-        <label>Middle Name</label>
-        <input id="middleName" placeholder="Middle Name" type="text"><br>
-        <label>Last Name</label><br>
-        <input id="lastName" placeholder="Last Name" type="text"><br>
-        <label>Email</label><br>
-        <input id="email" placeholder="Email" type="email"><br>
-        <label>Birth Date</label><br>
-        <input id="birthDate" type="date"><br>
-        <label>Profile Picture</label>
-        <input accept="image/png" type="file"><br><br>
-        <div class="custom-select" style="width:200px">
-          <select>
-            <option value="favorite-genre">Favorite Genre</option>
-            <option value="action">Action</option>
-            <option value="romance">Romance</option>
-            <option value="thriller">Thriller</option>
-            <option value="sports">Sports</option>
-            <option value="comedy">Comedy</option>
-            <option value="sci-fi">Sci-Fi</option>
-            <option value="horror">Horror</option>
-          </select>
-        </div>
-        <br><br>
-        <button>Update Account</button>
-      </div>
-    </div>
-  </body>
+
+<body>
+  <nav-bar></nav-bar>
+  <label>First Name</label>
+  <input id="firstName" placeholder="First Name" type="text">
+  <label>Middle Name</label>
+  <input id="middleName" placeholder="Middle Name" type="text">
+  <label>Last Name</label>
+  <input id="lastName" placeholder="Last Name" type="text">
+  <label>Email</label>
+  <input id="email" placeholder="Email" type="email">
+  <label>Birth Date</label>
+  <input id="birthDate" type="date">
+  <genre-selector></genre-selector>
+  <button>Update Account</button>
+</body>
+
 </html>

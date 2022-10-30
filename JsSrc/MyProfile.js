@@ -1,11 +1,6 @@
-// TODO::put this in its own file
-function getCookie(name) {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${name}=`);
-    if (parts.length === 2) return parts.pop().split(';').shift();
-}
+import getCookie from "./Cookies.js";
 
-function setUserProfile(user){
+function setUserProfile(user) {
     var firstName = document.getElementById("firstName");
     var middleName = document.getElementById("middleName");
     var lastName = document.getElementById("lastName");
@@ -20,19 +15,19 @@ function setUserProfile(user){
     birthDate.value = user.birthDate || null;
 }
 
-function getUserProfile(){
+function getUserProfile() {
     let result = {};
 
     fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${getCookie("userId")}`)
-    .then(result => {
-        return result.json();
-    })
-    .then(json => {
-        result = json;
+        .then(result => {
+            return result.json();
+        })
+        .then(json => {
+            result = json;
 
-        setUserProfile(result);
-    })
-    .catch(err => console.error(err));
+            setUserProfile(result);
+        })
+        .catch(err => console.error(err));
 }
 
-getUserProfile();
+export { setUserProfile, getUserProfile };

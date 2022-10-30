@@ -1,18 +1,17 @@
-class NavBar extends HTMLElement{
-	constructor(){
+class NavBar extends HTMLElement {
+	constructor() {
 		super();
 	}
 
-	connectedCallback(){
-		console.log('loading nav-bar')
+	connectedCallback() {
 		fetch('Components/NavBar/nav-bar.html')
-		.then((response) => response.text())
-		.then((text) => {
-			this.innerHTML = text;
-		})
-		.catch((err) => {
-			console.log(err);
-		})
+			.then((response) => response.text())
+			.then((text) => {
+				this.innerHTML = text;
+			})
+			.catch((err) => {
+				console.log(err);
+			});
 	}
 }
 
