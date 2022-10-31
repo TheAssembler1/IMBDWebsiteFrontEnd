@@ -1,11 +1,12 @@
 import { getCookie } from "../../JsSrc/Cookies.js";
+import { decodeMovieIdImageToImg } from '../../JsSrc/DecodeMovieIdImageToImg.js';
 
 class Movie extends HTMLElement {
     constructor() {
         super();
     }
 
-    setupInnerHTML(movie, commentsJson, usernames, liked, userReview) {
+    async setupInnerHTML(movie, commentsJson, usernames, liked, userReview, movieId) {
         let result = "";
 
         result += "<hr>";
@@ -17,6 +18,11 @@ class Movie extends HTMLElement {
         result += `<p>${movie.likes}</p>`;
         result += `<input id="liked" onclick="toggleLike()" type=checkbox ${(liked) ? 'checked' : ''}></input>`
         result += `<p>${movie.summary}</p>`;
+
+        // getting the img with movie
+        var img = await decodeMovieIdImageToImg(movieId);
+        result += `<img src="${img.src}"></img>`;
+
         result += "<hr>";
 
         // for user to sbumit a review
@@ -24,12 +30,15 @@ class Movie extends HTMLElement {
         result += `<button onclick="submitReview()">Submit Review</button>`;
         result += `<button onclick="deleteReview()">Delete Review</button>`;
 
-        let count = 0;
-        for (let comment in commentsJson.moviescomments) {
-            result += "<hr>";
-            result += `<p>${usernames[count++]}</p>`;
-            result += `<p>${commentsJson.moviescomments[comment].comment}</p>`;
-            result += "<hr>";
+
+        if (Array.isArray(commentsJson.moviescomments)) {
+            let count = 0;
+            for (let comment in commentsJson.moviescomments) {
+                result += "<hr>";
+                result += `<p>${usernames[count++] || 'Anonymous'}</p>`;
+                result += `<p>${commentsJson.moviescomments[comment].comment}</p>`;
+                result += "<hr>";
+            }
         }
 
         return result;
@@ -49,16 +58,26 @@ class Movie extends HTMLElement {
 
         let userReview = null;
         let userNames = [];
-        for (let comment in commentsJson.moviescomments) {
-            let userId = commentsJson.moviescomments[comment].userId;
-            let userRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${userId}`);
-            let userJson = await userRes.json();
 
-            if (getCookie("userId") == commentsJson.moviescomments[comment].userId) {
-                userReview = commentsJson.moviescomments[comment].comment;
+        if (Array.isArray(commentsJson.moviescomments)) {
+            //removing dummy comment from front of the array
+            commentsJson.moviescomments.shift();
+
+            console.log(commentsJson.moviescomments.length)
+            for (let i = 1; i < commentsJson.moviescomments.length; i++) {
+                let userId = commentsJson.moviescomments[i].userId;
+
+                let userRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${userId}`);
+                let userJson = await userRes.json();
+
+                if (getCookie("userId") == commentsJson.moviescomments[i].userId) {
+                    userReview = commentsJson.moviescomments[i].comment;
+                }
+
+                console.log(JSON.stringify(userJson.userName));
+
+                userNames.push(userJson.userName);
             }
-
-            userNames.push(userJson.userName);
         }
 
         let likesRes = fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`);
@@ -69,7 +88,8 @@ class Movie extends HTMLElement {
             liked = true;
         }
 
-        this.innerHTML = this.setupInnerHTML(movieJson, commentsJson, userNames, liked, userReview);
+
+        this.innerHTML = await this.setupInnerHTML(movieJson, commentsJson, userNames, liked, userReview, movieId);
     }
 }
 

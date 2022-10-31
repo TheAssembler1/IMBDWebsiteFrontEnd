@@ -1,4 +1,5 @@
 import { readFileAsync } from "./Files.js";
+import { decodeMovieIdImageToImg } from '../../JsSrc/DecodeMovieIdImageToImg.js';
 
 async function submitMovie() {
     const movieId = document.getElementById('movieId').value || null;
@@ -14,10 +15,12 @@ async function submitMovie() {
     const image = document.getElementById('image').files[0] || null;
     let imageBinary = null;
 
-    /*if (!(movieId && name && studio && genre && lengthHours && lengthMinutes && rating && summary && rated && director)) {
+    console.log(image.size);
+
+    if (!(movieId && name && studio && genre && lengthHours && lengthMinutes && rating && summary && rated && director)) {
         alert("One or more of the fields were null!");
         return;
-    };*/
+    };
 
     try {
         imageBinary = await readFileAsync(image);
@@ -30,16 +33,9 @@ async function submitMovie() {
 
     console.log(uint8ImageArray);
 
-    //console.log(new TextEncoder('UTF-8').encode(uint8ImageArray));
+    var stringImageBinary = new TextEncoder('UTF-8').encode(uint8ImageArray);
 
-    var img = document.createElement("img");
-
-    img.src = URL.createObjectURL(
-        new Blob([uint8ImageArray.buffer], { type: 'image/png' })
-    );
-    document.body.appendChild(img);
-
-    /*const request = {
+    const request = {
         movieId: movieId,
         name: name,
         studio: studio,
@@ -51,56 +47,18 @@ async function submitMovie() {
         director: director,
         image: stringImageBinary
     }
+    console.log(request);
 
-    console.log(request);*/
-
-    /*const res = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MovieServlet`, {
+    const res = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MovieServlet`, {
         method: 'POST',
         body: JSON.stringify(request)
-    });*/
+    });
 
-    /*if (res.status == 409) {
+    if (res.status == 409) {
         alert("Movie already existst!");
     } else {
-        //window.location.href = "/";
-    };*/
-
-    const newRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MovieServlet?movieId=1`);
-    const newJson = await newRes.json();
-    console.log('after-----------------------');
-
-    var arr = [];
-    for (let byte in newJson.image) {
-        arr.push(newJson.image[byte]);
-    }
-
-    var u8 = new Uint8Array(arr);
-    var arrayBuffer = u8.buffer;
-
-
-    const test = new TextDecoder().decode(new Uint8Array(arr));
-    console.log(test);
-
-    var iter = test.split(',');
-    console.log(iter);
-    var newArray = [];
-    for (let num in test.split(',')) {
-        newArray.push(test[num]);
-    }
-
-    var result = new Uint8Array(test.split(','));
-
-    var another = document.createElement("img");
-    another.src = URL.createObjectURL(
-        new Blob([result.buffer], { type: 'image/png' })
-    );
-    document.body.appendChild(another);
-    /*var b64encoded = btoa(newJson.image);
-
-    var img = document.createElement("img");
-    console.log("data:image/png;base64," + b64encoded);
-    img.src = "data:image/png;base64," + b64encoded;
-    document.body.appendChild(img);*/
+        window.location.href = "/";
+    };
 }
 
 export { submitMovie };

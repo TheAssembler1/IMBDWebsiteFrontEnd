@@ -7,6 +7,7 @@ class AllMovies extends HTMLElement {
         let result = "";
 
         result += "<hr>";
+
         for (let movie in json.movies) {
             result += `<a href=/Core/movie.html?movieId=${json.movies[movie].movieId}>${json.movies[movie].name}</a>`;
             result += `<p>${json.movies[movie].studio}</p>`;
