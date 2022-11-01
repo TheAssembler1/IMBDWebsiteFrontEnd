@@ -1,4 +1,4 @@
-import { getCookie } from "./Cookies.js";
+import { getCookie } from "/JsSrc/Cookies.js";
 
 async function toggleLike() {
     var liked = document.getElementById('liked').checked;

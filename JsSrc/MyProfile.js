@@ -1,4 +1,4 @@
-import { getCookie } from "./Cookies.js";
+import { getCookie } from "/JsSrc/Cookies.js";
 
 function setUserProfile(user, refresh) {
     var firstName = document.getElementById("firstName");
@@ -15,7 +15,7 @@ function setUserProfile(user, refresh) {
     birthDate.value = user.birthDate || null;
 
     if (refresh) {
-        window.location.href = '/User/my-profile.html';
+        window.location.href = '/JsSrc//User/my-profile.html';
     }
 }
 
@@ -39,7 +39,7 @@ async function updateUserProfile() {
         body: JSON.stringify(request)
     })
         .then(res => {
-            window.location.href = "/User/my-profile.html";
+            window.location.href = "/JsSrc/User/my-profile.html";
         })
         .catch(err => console.error(err));
 }

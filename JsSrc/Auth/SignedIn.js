@@ -10,5 +10,5 @@ function isUserLoggedIn() {
 
 // redirecting if user is not logged in
 if (!isUserLoggedIn()) {
-    location.href = "/User/sign-in.html";
+    location.href = "/Html/User/sign-in.html";
 }
