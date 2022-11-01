@@ -6,6 +6,10 @@
     <head>
         <!--setting the base reference-->
         <base href="/">
+        <script type="module">
+            import { searchMovie } from "/JsSrc/SearchMovies.js";
+            window.searchMovie = searchMovie;
+        </script>
         <script type="module" src="JsSrc/Components/NavBar/NavBar.js"></script>
         <script type="module" src="JsSrc/Components/GenreSelector/GenreSelector.js"></script>
         <script type="module" src="JsSrc/Components/RatingSelector/RatingSelector.js"></script>

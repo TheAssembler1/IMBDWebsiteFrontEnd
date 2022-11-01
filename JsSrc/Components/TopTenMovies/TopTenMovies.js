@@ -8,7 +8,7 @@ class TopTenMovies extends HTMLElement {
 
         result += "<hr>";
         for (let movie in json.movies) {
-            result += `<a href=/Core/movie.html?movieId=${json.movies[movie].movieId}>${json.movies[movie].name}</a>`;
+            result += `<a href=/Html/Core/movie.html?movieId=${json.movies[movie].movieId}>${json.movies[movie].name}</a>`;
             result += `<p>Production Studio: ${json.movies[movie].studio}</p>`;
             result += `<p>Length: ${json.movies[movie].length}</p>`;
             result += `<p>Rating: ${json.movies[movie].rating}</p>`;
