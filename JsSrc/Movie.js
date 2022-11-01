@@ -2,7 +2,7 @@ import { readFileAsync } from "./Files.js";
 import { decodeMovieIdImageToImg } from '../../JsSrc/DecodeMovieIdImageToImg.js';
 
 async function submitMovie() {
-    const movieId = document.getElementById('movieId').value || null;
+    /*const movieId = document.getElementById('movieId').value || null;
     const name = document.getElementById('name').value || null;
     const studio = document.getElementById('studio').value || null;
     const genre = document.getElementById('genre').value || null;
@@ -15,7 +15,7 @@ async function submitMovie() {
     const image = document.getElementById('image').files[0] || null;
     let imageBinary = null;
 
-    console.log(image.size);
+    console.log(image.name);
 
     if (!(movieId && name && studio && genre && lengthHours && lengthMinutes && rating && summary && rated && director)) {
         alert("One or more of the fields were null!");
@@ -58,7 +58,7 @@ async function submitMovie() {
         alert("Movie already existst!");
     } else {
         window.location.href = "/";
-    };
+    };*/
 }
 
 export { submitMovie };

@@ -7,7 +7,7 @@ class GenreSelector extends HTMLElement {
         let result = "";
 
         result += `<label>Genre</label>`
-        result += '<select id="genre">';
+        result += '<select name="genre">';
 
         for (let genre in genres) {
             result += `<option value="${genres[genre]}">${genres[genre]}</option>`

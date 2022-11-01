@@ -1,5 +1,4 @@
 import { getCookie } from "../../JsSrc/Cookies.js";
-import { decodeMovieIdImageToImg } from '../../JsSrc/DecodeMovieIdImageToImg.js';
 
 class Movie extends HTMLElement {
     constructor() {
@@ -20,8 +19,7 @@ class Movie extends HTMLElement {
         result += `<p>${movie.summary}</p>`;
 
         // getting the img with movie
-        var img = await decodeMovieIdImageToImg(movieId);
-        result += `<img src="${img.src}"></img>`;
+        result += `<img src="/images/${movie.image}"></img>`;
 
         result += "<hr>";
 
@@ -45,10 +43,10 @@ class Movie extends HTMLElement {
     }
 
     async connectedCallback() {
+
         const queryString = window.location.search;
         const urlParams = new URLSearchParams(queryString);
         const movieId = urlParams.get('movieId');
-
 
         let movieRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MovieServlet?movieId=${movieId}`);
         let movieJson = await movieRes.json();
@@ -63,7 +61,6 @@ class Movie extends HTMLElement {
             //removing dummy comment from front of the array
             commentsJson.moviescomments.shift();
 
-            console.log(commentsJson.moviescomments.length)
             for (let i = 1; i < commentsJson.moviescomments.length; i++) {
                 let userId = commentsJson.moviescomments[i].userId;
 
@@ -74,7 +71,6 @@ class Movie extends HTMLElement {
                     userReview = commentsJson.moviescomments[i].comment;
                 }
 
-                console.log(JSON.stringify(userJson.userName));
 
                 userNames.push(userJson.userName);
             }
