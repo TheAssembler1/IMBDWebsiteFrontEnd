@@ -26,6 +26,8 @@ class Movie extends HTMLElement {
         result += `Like<input id="liked" onclick="toggleLike()" type=checkbox ${(liked) ? 'checked' : ''}>${movie.likes}</input>`
         result += '</div>';
 
+        result += `<button id="delete-movie" onclick="deleteMovie()">Delete Movie</button>`
+
         result += '</div>';
 
         // for user to sbumit a review

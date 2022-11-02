@@ -3,8 +3,6 @@ import { BACKEND_URL } from "/JsSrc/Config.js";
 async function searchMovie() {
     const name = document.getElementById('searchName').value;
 
-    console.log(name);
-
     if (!name) {
         alert("Search cannot be empty!");
         return;
