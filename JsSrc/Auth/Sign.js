@@ -1,4 +1,5 @@
 import { deleteAllCookies } from "../Cookies.js";
+import { BACKEND_URL } from "/JsSrc/Config.js";
 
 function SignUp() {
     const userName = document.getElementById("userName").value;
@@ -9,7 +10,7 @@ function SignUp() {
         password: password
     }
 
-    fetch('http://localhost:8080/IMBDWebsiteBackEnd/SignUpServlet', {
+    fetch(`${BACKEND_URL}SignUpServlet`, {
         method: "POST",
         body: JSON.stringify(request),
     })

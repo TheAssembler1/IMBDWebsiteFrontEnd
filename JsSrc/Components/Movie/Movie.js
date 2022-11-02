@@ -1,4 +1,5 @@
 import { getCookie } from "/JsSrc/Cookies.js";
+import { BACKEND_URL } from "/JsSrc/Config.js";
 
 class Movie extends HTMLElement {
     constructor() {
@@ -48,10 +49,10 @@ class Movie extends HTMLElement {
         const urlParams = new URLSearchParams(queryString);
         const movieId = urlParams.get('movieId');
 
-        let movieRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MovieServlet?movieId=${movieId}`);
+        let movieRes = await fetch(`${BACKEND_URL}MovieServlet?movieId=${movieId}`);
         let movieJson = await movieRes.json();
 
-        let commentsRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesCommentsServlet?movieId=${movieId}`);
+        let commentsRes = await fetch(`${BACKEND_URL}MoviesCommentsServlet?movieId=${movieId}`);
         let commentsJson = await commentsRes.json();
 
         let userReview = null;
@@ -64,7 +65,7 @@ class Movie extends HTMLElement {
             for (let i = 1; i < commentsJson.moviescomments.length; i++) {
                 let userId = commentsJson.moviescomments[i].userId;
 
-                let userRes = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${userId}`);
+                let userRes = await fetch(`${BACKEND_URL}UserServlet?userId=${userId}`);
                 let userJson = await userRes.json();
 
                 if (getCookie("userId") == commentsJson.moviescomments[i].userId) {
@@ -76,7 +77,7 @@ class Movie extends HTMLElement {
             }
         }
 
-        let likesRes = fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`);
+        let likesRes = fetch(`${BACKEND_URL}MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`);
         let liked = false;
 
         // checking if user has liked post

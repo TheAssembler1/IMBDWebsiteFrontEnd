@@ -1,4 +1,5 @@
-import { getCookie } from "/JsSrc/Cookies.js";
+import { getCookie, deleteAllCookies } from "/JsSrc/Cookies.js";
+import { BACKEND_URL } from "/JsSrc/Config.js";
 
 function setUserProfile(user, refresh) {
     var firstName = document.getElementById("firstName");
@@ -34,7 +35,7 @@ async function updateUserProfile() {
         "birthDate": birthDate || null
     };
 
-    let res = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${getCookie("userId")}`, {
+    let res = await fetch(`${BACKEND_URL}UserServlet?userId=${getCookie("userId")}`, {
         method: "PUT",
         body: JSON.stringify(request)
     })
@@ -47,7 +48,7 @@ async function updateUserProfile() {
 function getUserProfile() {
     let result = {};
 
-    fetch(`http://localhost:8080/IMBDWebsiteBackEnd/UserServlet?userId=${getCookie("userId")}`)
+    fetch(`${BACKEND_URL}UserServlet?userId=${getCookie("userId")}`)
         .then(result => {
             return result.json();
         })
@@ -59,6 +60,11 @@ function getUserProfile() {
         .catch(err => console.error(err));
 }
 
+function signOutUser() {
+    deleteAllCookies();
+    window.location.href = "/";
+}
+
 getUserProfile();
 
-export { updateUserProfile, setUserProfile, getUserProfile };
+export { signOutUser, updateUserProfile, setUserProfile, getUserProfile };

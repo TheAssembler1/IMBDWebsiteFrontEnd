@@ -1,3 +1,5 @@
+import { BACKEND_URL } from "/JsSrc/Config.js";
+
 class GenreSelector extends HTMLElement {
     constructor() {
         super();
@@ -19,7 +21,7 @@ class GenreSelector extends HTMLElement {
     }
 
     connectedCallback() {
-        fetch('http://localhost:8080/IMBDWebsiteBackEnd/MoviesGenreServlet')
+        fetch(`${BACKEND_URL}MoviesGenreServlet`)
             .then(res => res.json())
             .then(json => {
                 this.innerHTML = this.setupInnerHTML(json);

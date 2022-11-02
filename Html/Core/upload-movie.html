@@ -14,30 +14,32 @@
         <script type="module" src="JsSrc/Components/GenreSelector/GenreSelector.js"></script>
         <script type="module" src="JsSrc/Components/RatingSelector/RatingSelector.js"></script>
         <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
+        <script type="module" src="JsSrc/UploadMovieForm.js"></script>
+        <link rel="stylesheet" href="JsSrc/Components/NavBar/nav-bar.css">
     </head>
 
 <body>
     <nav-bar></nav-bar>
-    <form action="http://localhost:8080/IMBDWebsiteBackEnd/MovieServlet" method="post" enctype="multipart/form-data">
+    <form id="upload-movie-form" method="post" enctype="multipart/form-data">
         <label>IMBD Id</label>
-        <input name="movieId" type="text" required="true">
+        <input name="movieId" placeholder="Movie Id" type="text" required="true">
         <label>Title</label>
-        <input name="name" type="text" required="true">
+        <input name="name" placeholder="Title" type="text" required="true">
         <label>Director</label>
-        <input name="director" type="text" required="true">
+        <input name="director" placeholder="Director" type="text" required="true">
         <label>Production Studio</label>
-        <input name="studio" type="text" required="true">
+        <input name="studio" placeholder="Production Studio" type="text" required="true">
         <input name="image" type="file" accept="image/png" required="true">
         <genre-selector></genre-selector>
         <label>Length Hours</label>
-        <input name="lengthHours" type="number" min="0" required="true">
+        <input name="lengthHours" placeholder="Hours" type="number" min="0" required="true">
         <label>Mintues</label>
-        <input name="lengthMinutes" type="number" min="0" max="59" required="true"></label>
+        <input name="lengthMinutes" placeholder="Minutes" type="number" min="0" max="59" required="true"></label>
         <label>Rating</label>
         <input name="rating" type="number" step="0.1" min="0" max="10" required="true">
         <rating-selector></rating-selector>
         <label>Summary</label>
-        <textarea name="summary" required="true"></textarea>
+        <textarea placeholder="Summary of the movie..." name="summary" required="true"></textarea>
         <button type="submit">Sign Up</button>
     </form>
 </body>

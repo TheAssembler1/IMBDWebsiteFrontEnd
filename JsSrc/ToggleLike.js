@@ -1,4 +1,5 @@
 import { getCookie } from "/JsSrc/Cookies.js";
+import { BACKEND_URL } from "/JsSrc/Config.js";
 
 async function toggleLike() {
     var liked = document.getElementById('liked').checked;
@@ -9,11 +10,11 @@ async function toggleLike() {
     const movieId = urlParams.get('movieId');
 
     if (liked === false) {
-        await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
+        await fetch(`${BACKEND_URL}MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
             method: 'DELETE'
         });
     } else {
-        await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
+        await fetch(`${BACKEND_URL}MoviesLikesServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
             method: 'POST'
         });
     }

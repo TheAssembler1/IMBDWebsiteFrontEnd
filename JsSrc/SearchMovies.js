@@ -1,3 +1,5 @@
+import { BACKEND_URL } from "/JsSrc/Config.js";
+
 async function searchMovie() {
     const name = document.getElementById('searchName').value;
 
@@ -8,7 +10,7 @@ async function searchMovie() {
         return;
     }
 
-    const res = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MovieExistsServlet?name=${name}`);
+    const res = await fetch(`${BACKEND_URL}MovieExistsServlet?name=${name}`);
 
     if (res.status == 404) {
         alert('Movie does not exist!');

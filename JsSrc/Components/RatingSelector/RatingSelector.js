@@ -1,3 +1,5 @@
+import { BACKEND_URL } from "/JsSrc/Config.js";
+
 class RatingSelector extends HTMLElement {
     constructor() {
         super();
@@ -19,7 +21,7 @@ class RatingSelector extends HTMLElement {
     }
 
     connectedCallback() {
-        fetch('http://localhost:8080/IMBDWebsiteBackEnd/MoviesRatesServlet')
+        fetch(`${BACKEND_URL}MoviesRatesServlet`)
             .then(res => res.json())
             .then(json => {
                 this.innerHTML = this.setupInnerHTML(json);

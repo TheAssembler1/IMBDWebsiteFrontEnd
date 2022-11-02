@@ -1,3 +1,5 @@
+import { BACKEND_URL } from "/JsSrc/Config.js";
+
 class TopTenMovies extends HTMLElement {
     constructor() {
         super();
@@ -23,7 +25,7 @@ class TopTenMovies extends HTMLElement {
     }
 
     connectedCallback() {
-        fetch('http://localhost:8080/IMBDWebsiteBackEnd/TopTenMoviesServlet')
+        fetch(`${BACKEND_URL}TopTenMoviesServlet`)
             .then(res => res.json())
             .then(json => {
                 this.innerHTML = this.setupInnerHTML(json);

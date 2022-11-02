@@ -10,8 +10,11 @@
     <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
     <script type="module">
       import { updateUserProfile } from '/JsSrc/MyProfile.js';
+      import { signOutUser } from '/JsSrc/MyProfile.js';
       window.updateUserProfile = updateUserProfile;
+      window.signOutUser = signOutUser;
     </script>
+    <link rel="stylesheet" href="JsSrc/Components/NavBar/nav-bar.css">
   </head>
 
 <body>
@@ -27,6 +30,7 @@
   <label>Birth Date</label>
   <input id="birthDate" type="date">
   <button onclick="updateUserProfile()">Update Account</button>
+  <button onclick="signOutUser()">Sign Out</button>
 </body>
 
 </html>

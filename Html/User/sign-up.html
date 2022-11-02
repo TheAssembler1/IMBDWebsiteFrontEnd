@@ -10,15 +10,21 @@
       import { SignUp } from "/JsSrc/Auth/Sign.js";
       window.SignUp = SignUp;
     </script>
+    <link rel="stylesheet" href="/Html/User/sign.css">
   </head>
 
 <body>
-  <label>Username</label>
-  <input id="userName" placeholder="Username" type="text">
-  <label>Password</label>
-  <input id="password" placeholder="Password" type="password">
-  <button onclick="SignUp()">Sign Up</button>
-  <label>Already Have An Account? <a href="/Html/User/sign-in.html">Login</label>
+  <div class="sign">
+    <h1>Sign Up</h1>
+    <div id="form">
+      <input id="userName" type="text" placeholder="username" class="field">
+      <input id="password" type="password" placeholder="password" class="field">
+      <input type="submit" onclick="SignUp()" value="login" class="btn">
+    </div>
+    <div class="pass-link">
+      <a href="/Html/User/sign-in.html">Sign in?</a>
+    </div>
+  </div>
 </body>
 
 </html>

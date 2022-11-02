@@ -1,6 +1,31 @@
-<a href="/">IMBDWebsite</a>
-<a href="/Html/Core/movie-of-the-day.html">Movie Of The Day</a>
-<a href="/Html/Core/top-ten-movies.html">Top 10 Movies</a>
-<a href="/Html/Core/upload-movie.html">Upload Movie</a>
-<a href="/Html/User/my-profile.html">My Profile</a>
-<label>Search Movie<input id="searchName" type="text"><button onclick="searchMovie()">Search</button></label>
+<div class="nav-header">
+    <div class="logo">
+        IMBD Website
+    </div>
+    <div class="menu">
+        <a href="/" class="link">
+            <div class="nav-title">Home</div>
+            <div class="nav-bar"></div>
+        </a>
+        <a href="/Html/Core/movie-of-the-day.html" class="link">
+            <div class="nav-title">Movie of the Day</div>
+            <div class="nav-bar"></div>
+        </a>
+        <a href="/Html/Core/top-ten-movies.html" class="link">
+            <div class="title">Top 10 Movies</div>
+            <div class="nav-bar"></div>
+        </a>
+        <a href="/Html/Core/upload-movie.html" class="link">
+            <div class="title">Upload Movie</div>
+            <div class="nav-bar"></div>
+        </a>
+        <a href="/Html/User/my-profile.html" class="link">
+            <div class="title">My Profile</div>
+            <div class="nav-bar"></div>
+        </a>
+        <span>
+            <input id="searchName" placeholder="Movie Name" type="text">
+        </span>
+        <button onclick="searchMovie()" required=true>Search Movie</button>
+    </div>
+</div>

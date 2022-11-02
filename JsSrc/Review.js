@@ -1,4 +1,5 @@
 import { getCookie } from "/JsSrc/Cookies.js";
+import { BACKEND_URL } from "/JsSrc/Config.js";
 
 async function submitReview() {
     var review = document.getElementById('review').value;
@@ -18,11 +19,11 @@ async function submitReview() {
         "comment": review
     }
 
-    let resDel = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesCommentsServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
+    let resDel = await fetch(`${BACKEND_URL}MoviesCommentsServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
         method: 'DELETE'
     });
 
-    let resPost = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesCommentsServlet?userId=${getCookie("userId")}`, {
+    let resPost = await fetch(`${BACKEND_URL}MoviesCommentsServlet?userId=${getCookie("userId")}`, {
         method: 'POST',
         body: JSON.stringify(request)
     });
@@ -36,7 +37,7 @@ async function deleteReview() {
     const urlParams = new URLSearchParams(queryString);
     const movieId = urlParams.get('movieId');
 
-    let resDel = await fetch(`http://localhost:8080/IMBDWebsiteBackEnd/MoviesCommentsServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
+    let resDel = await fetch(`${BACKEND_URL}MoviesCommentsServlet?movieId=${movieId}&userId=${getCookie("userId")}`, {
         method: 'DELETE'
     });
 
