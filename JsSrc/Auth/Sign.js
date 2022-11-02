@@ -48,7 +48,7 @@ function SignIn() {
         password: password
     }
 
-    fetch('http://localhost:8080/IMBDWebsiteBackEnd/SignInServlet', {
+    fetch(`${BACKEND_URL}SignInServlet`, {
         method: "POST",
         body: JSON.stringify(request),
     })
