@@ -1,0 +1,48 @@
+@import url(https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800);
+
+* {
+    font-family: 'Dosis';
+}
+
+#movie-image {
+    display: inline-block;
+    border: 2px solid red;
+}
+
+#movie-summary {
+    border: 2px solid black;
+    padding: 1%;
+}
+
+#review-box {
+    width: 80%;
+    resize: none;
+    height: 120px;
+    border: 3px solid #cccccc;
+    padding: 5px;
+}
+
+#movie-details {
+    border: 2px solid black;
+}
+
+#movie {
+    text-align: center;
+}
+
+#comments {
+    text-align: center;
+}
+
+.comment {
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 2%;
+    margin-left: 10%;
+    margin-right: 10%
+}
+
+.comment-username {
+    text-decoration: underline;
+}
