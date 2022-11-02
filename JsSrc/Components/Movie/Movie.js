@@ -14,23 +14,29 @@ class Movie extends HTMLElement {
         result += `<h1 id="title">${movie.name}</h1>`;
         // getting the img with movie
         result += `<img id="movie-image" width="200" height="300" src="/images/${movie.image}"></img>`;
+        result += `<h4 id="movie-summary">${movie.summary}</h4>`;
         result += '<div id="movie-details">';
         result += `<p>Production Studio: ${movie.studio}</p>`;
-        result += `<p>Length: ${movie.length}</p>`;
-        result += `<p>Rating: ${movie.rating}</p>`;
+
+        const time = movie.length.split(":");
+
+        result += `<p>Length: ${time[0]} hrs ${time[1]} mins</p>`;
+        result += `<p>Rating: ${movie.rating} / 10</p>`;
         result += `<p>Director: ${movie.director}</p>`;
-        result += `<p>Likes: ${movie.likes}</p>`;
+        result += `Like<input id="liked" onclick="toggleLike()" type=checkbox ${(liked) ? 'checked' : ''}>${movie.likes}</input>`
         result += '</div>';
-        result += `Like<input id="liked" onclick="toggleLike()" type=checkbox ${(liked) ? 'checked' : ''}></input>`
-        result += `<h4 id="movie-summary">Summary: ${movie.summary}</h4>`;
 
         result += '</div>';
 
         // for user to sbumit a review
-        result += '<h1>Write a review:</h1>';
-        result += `<textarea id="review-box">${(!userReview) ? "" : userReview}</textarea>`;
+        result += '<div id="review">';
+        result += '<h1>Write a review</h1>';
+        result += '<div id="review-box">';
+        result += `<textarea placeholder="Write a review..." id="review-text">${(!userReview) ? "" : userReview}</textarea>`;
+        result += '</div>';
         result += `<button onclick="submitReview()">Submit Review</button>`;
         result += `<button onclick="deleteReview()">Delete Review</button>`;
+        result += '</div>';
 
         result += '<div id="comments">';
 

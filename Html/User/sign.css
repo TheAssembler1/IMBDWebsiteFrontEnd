@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800);
 
 .sign {
-    animation: fadeIn .13s;
+    animation: fadeIn .2s;
 }
 
 @keyframes fadeIn {
@@ -73,7 +73,7 @@
 
 .sign .pass-link a:link,
 .sign .pass-link a:visited {
-    font-size: 12px;
+    font-size: 17px;
     color: #777;
 }
 

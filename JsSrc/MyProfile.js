@@ -40,7 +40,7 @@ async function updateUserProfile() {
         body: JSON.stringify(request)
     })
         .then(res => {
-            window.location.href = "/JsSrc/User/my-profile.html";
+            window.location.href = "/Html/User/my-profile.html";
         })
         .catch(err => console.error(err));
 }

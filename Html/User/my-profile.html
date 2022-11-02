@@ -7,6 +7,10 @@
     <!--setting the base reference-->
     <base href="/">
     <script type="module" src="JsSrc/Components/NavBar/NavBar.js"></script>
+    <script type="module">
+      import { searchMovie } from "/JsSrc/SearchMovies.js";
+      window.searchMovie = searchMovie;
+    </script>
     <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
     <script type="module">
       import { updateUserProfile } from '/JsSrc/MyProfile.js';
@@ -15,11 +19,34 @@
       window.signOutUser = signOutUser;
     </script>
     <link rel="stylesheet" href="JsSrc/Components/NavBar/nav-bar.css">
+    <link rel="stylesheet" href="Html/Core/upload-movie.css">
   </head>
 
 <body>
   <nav-bar></nav-bar>
-  <label>First Name</label>
+  <center>
+    <h1>User Profile</h1>
+    <div id="movie-upload">
+      <div class="input-element" id="name">
+        <h3>User Essentials</h3>
+        <input id="firstName" placeholder="First Name" type="text">
+        <input id="middleName" placeholder="Middle Name" type="text">
+        <input id="lastName" placeholder="Last Name" type="text">
+      </div>
+      <div id="movie-details">
+        <h3>User Details</h3>
+        <div class="input-element">
+          <input id="email" placeholder="Email" type="text">
+        </div>
+        <div class="input-element">
+          <input id="birthDate" placeholder="BirthDate" type="date">
+        </div>
+      </div>
+      <button class="buttons-bottom" onclick="updateUserProfile()">Update Account</button>
+      <button class="buttons-bottom" onclick="signOutUser()">Sign Out</button>
+    </div>
+  </center>
+  <!--<label>First Name</label>
   <input id="firstName" placeholder="First Name" type="text">
   <label>Middle Name</label>
   <input id="middleName" placeholder="Middle Name" type="text">
@@ -30,7 +57,7 @@
   <label>Birth Date</label>
   <input id="birthDate" type="date">
   <button onclick="updateUserProfile()">Update Account</button>
-  <button onclick="signOutUser()">Sign Out</button>
+  <button onclick="signOutUser()">Sign Out</button>-->
 </body>
 
 </html>

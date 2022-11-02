@@ -2,7 +2,7 @@ import { getCookie } from "/JsSrc/Cookies.js";
 import { BACKEND_URL } from "/JsSrc/Config.js";
 
 async function submitReview() {
-    var review = document.getElementById('review').value;
+    var review = document.getElementById('review-text').value;
 
     if (!review) {
         alert('You cannot leave an empty review!');
