@@ -1,3 +1,5 @@
+import { BACKEND_URL, FRONTEND_URL } from "/JsSrc/Config.js";
+
 function getCookie(name) {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
@@ -13,9 +15,8 @@ function deleteAllCookies() {
         var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
         document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
     }
-    console.log('name=userId; path=/; expires=' + new Date(0).toUTCString());
-    document.cookie = 'name=userId; path=/; expires=' + new Date(0).toUTCString();
-    document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
+    document.cookie = `name=userId; path=${FRONTEND_URL}; expires=` + new Date(0).toUTCString();
+    document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + `;path=${FRONTEND_URL}`); });
 }
 
 function cookieExists(name) {
