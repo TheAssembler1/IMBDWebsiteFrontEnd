@@ -12,10 +12,13 @@
         </script>
         <script type="module" src="JsSrc/Components/NavBar/NavBar.js"></script>
         <script type="module" src="JsSrc/Auth/SignedIn.js"></script>
-        <script type="module" src="JsSrc/UploadMovieForm.js"></script>
         <link rel="stylesheet" href="JsSrc/Components/NavBar/nav-bar.css">
         <link rel="stylesheet" href="Html/Core/upload-movie.css">
         <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script type="module">
+            import { uploadMovieForm } from "/JsSrc/UploadMovieForm.js";
+            window.uploadMovieForm = uploadMovieForm;
+        </script>
     </head>
 
 <body>
@@ -24,7 +27,7 @@
         <h1>Upload Movie</h1>
         <div id="movie-upload">
             <div id="movie-core">
-                <form id="upload-movie-form" method="post" enctype="multipart/form-data">
+                <form id="upload-movie-form" action="javascript:void(0);" enctype="multipart/form-data">
                     <h3>Movie Essentials</h3>
                     <input name="name" placeholder="Title" type="text" required="true">
                     <br>
@@ -81,7 +84,7 @@
                     <option value="R">R</option>
                 </select>
             </div>
-            <button id="submit" type="submit">Upload Movie</button>
+            <button onclick="uploadMovieForm()" id="submit" type="submit">Upload Movie</button>
             </form>
         </div>
     </center>
