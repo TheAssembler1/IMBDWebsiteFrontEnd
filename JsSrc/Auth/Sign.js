@@ -1,5 +1,5 @@
 import { deleteAllCookies } from "../Cookies.js";
-import { BACKEND_URL, FRONTEND_URL } from "/JsSrc/Config.js";
+import { BACKEND_URL } from "/JsSrc/Config.js";
 
 function SignUp() {
     const userName = document.getElementById("userName").value;
@@ -31,7 +31,7 @@ function SignUp() {
             deleteAllCookies();
 
             // setting userId cookie
-            document.cookie = `userId=${json}; path=${FRONTEND_URL}`;
+            document.cookie = `userId=${json}; path=/`;
 
             // sending user to homescreen
             location.href = "/";
@@ -66,12 +66,12 @@ function SignIn() {
             deleteAllCookies();
 
             // setting userId cookie
-            document.cookie = `userId=${json}; path=${FRONTEND_URL}`;
+            document.cookie = `userId=${json}; path=/;`;
 
             // sending user to homescreen
-            location.href = "/";
+            location.href = `/`;
         })
         .catch(err => console.error(err));
 }
 
-export { SignIn, SignUp }
+export { SignIn, SignUp };
